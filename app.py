@@ -25,13 +25,13 @@ if obj_file is not None:
         
         st.success("File saved successfully!")
 prompt = st.text_input("Enter prompt")
-n_iter = st.number_input("Enter number of iterations", min_value=1, value=750, step=1)
-remeshed_path = obj_path
-st.success("Remeshing complete")
+#n_iter = st.number_input("Enter number of iterations", min_value=1, value=750, step=1)
+#remeshed_path = obj_path
+#st.success("Remeshing complete")
 
 # Streamlit interface to run text2mesh
 st.header("Run Text2Mesh")
-if os.path.isfile(remeshed_path):
+if os.path.isfile(file_path):
     output_dir = "./results"
     st.write("Running Text2Mesh...")
     os.system(f"python main.py --run branch --obj_path {remeshed_path} --output_dir {output_dir} --prompt \"{prompt}\" --sigma 12.0 --clamp tanh --n_normaugs 4 --n_augs 1 --normmincrop 0.1 --normmaxcrop 0.4 --geoloss --colordepth 2 --normdepth 2 --frontview --frontview_std 4 --clipavg view --lr_decay 0.9 --clamp tanh --normclamp tanh --maxcrop 1.0 --save_render --seed 29 --n_iter {n_iter} --learning_rate 0.0005 --normal_learning_rate 0.0005 --standardize --no_pe --symmetry --background 1 1 1")
