@@ -13,5 +13,7 @@ argparse
 opencv-python
 importlib
 pillow
+setuptools
+
 
 
