@@ -7,10 +7,6 @@ import matplotlib.pyplot as plt
 import importlib
 import PIL
 from IPython.display import display, HTML
-import subprocess
-
-# Install dependencies from requirements.txt
-subprocess.call(['pip', 'install', '-r', 'setup.py'])
 
 
 st.title("Text to 3D Model with Text2Mesh")
