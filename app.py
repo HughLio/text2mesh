@@ -27,3 +27,4 @@ if st.button("Run Text2Mesh"):
             img_path = os.path.join(output_dir, f"iter_{i}.jpg")
             if os.path.isfile(img_path):
                 st.image(img_path, caption=f"Iteration {i}")
+        st.success("Text2Mesh complete")       
