@@ -12,7 +12,7 @@ from git import Repo
 import git
 
 # Define the repository path
-repo_path = "/input_obj/"
+repo_path = "input_obj"
 
 # Initialize the Git repository object
 repo = git.Repo(repo_path)
