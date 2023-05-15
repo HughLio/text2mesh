@@ -8,4 +8,10 @@ torchtext
 torchvision 
 pymeshlab
 cython
+streamlit 
+argparse
+opencv-python
+importlib
+pillow
+
 
