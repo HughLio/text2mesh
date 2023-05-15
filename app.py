@@ -8,33 +8,6 @@ import importlib
 import PIL
 from IPython.display import display, HTML
 import subprocess
-from git import Repo
-import git
-
-# Define the repository path
-repo_path = "input_obj"
-
-# Initialize the Git repository object
-repo = git.Repo(repo_path)
-
-# Add the remote "origin" with the remote URL
-remote_url = "https://github.com/vishnu6363/text2mesh.git"
-origin_remote = repo.create_remote("origin", url=remote_url)
-
-# Verify that the remote was added successfully
-print(repo.remotes)
-
-# Function to initialize a Git repository
-def init_git_repository(folder_path):
-    repo = Repo.init(folder_path)
-    return repo
-
-# Function to commit and push changes to the remote repository
-def commit_and_push(repo, commit_message):
-    repo.index.add("*")
-    repo.index.commit(commit_message)
-    origin = repo.remote(name="origin")
-    origin.push()
 
 
 st.title("Text to 3D Model with Text2Mesh")
@@ -42,22 +15,18 @@ st.title("Text to 3D Model with Text2Mesh")
 # Function to remesh input mesh
 
 
-# Streamlit interface to upload and remesh mesh
-st.header("Upload and Remesh Mesh")
+# Streamlit interface to upload mesh
+st.header("Upload  Mesh")
 obj_file = st.file_uploader("Upload OBJ file", type=["obj"])
+'''
 if obj_file is not None:
         # Save the uploaded file
         file_path = os.path.join("input_obj", obj_file.name)
         with open(file_path, "wb") as f:
             f.write(obj_file.getvalue())
         
-        st.success("File saved successfully!")
-        # Initialize Git repository
-        repo = init_git_repository("input_obj")
-
-        # Commit and push changes
-        commit_message = "Uploaded file"
-        commit_and_push(repo, commit_message)
+        st.success("File saved successfully!")'''
+       
 prompt = st.text_input("Enter prompt")
 #n_iter = st.number_input("Enter number of iterations", min_value=1, value=750, step=1)
 #remeshed_path = obj_path
@@ -69,7 +38,7 @@ if st.button("Run Text2Mesh"):
     output_dir = "results/"
     st.write("Running Text2Mesh...")
     n_iter=750
-    command = ["python", "main.py", "--run", "branch", "--obj_path", file_path, "--output_dir", output_dir, "--prompt", prompt, "--sigma", "12.0", "--clamp", "tanh", "--n_normaugs", "4", "--n_augs", "1", "--normmincrop", "0.1", "--normmaxcrop", "0.4", "--geoloss", "--colordepth", "2", "--normdepth", "2", "--frontview", "--frontview_std", "4", "--clipavg", "view", "--lr_decay", "0.9", "--clamp", "tanh", "--normclamp", "tanh", "--maxcrop", "1.0", "--save_render", "--seed", "29", "--n_iter", str(n_iter), "--learning_rate", "0.0005", "--normal_learning_rate", "0.0005", "--standardize", "--no_pe", "--symmetry", "--background", "1", "1", "1"]
+    command = ["python", "main.py", "--run", "branch", "--obj_path", obj_file, "--output_dir", output_dir, "--prompt", prompt, "--sigma", "12.0", "--clamp", "tanh", "--n_normaugs", "4", "--n_augs", "1", "--normmincrop", "0.1", "--normmaxcrop", "0.4", "--geoloss", "--colordepth", "2", "--normdepth", "2", "--frontview", "--frontview_std", "4", "--clipavg", "view", "--lr_decay", "0.9", "--clamp", "tanh", "--normclamp", "tanh", "--maxcrop", "1.0", "--save_render", "--seed", "29", "--n_iter", str(n_iter), "--learning_rate", "0.0005", "--normal_learning_rate", "0.0005", "--standardize", "--no_pe", "--symmetry", "--background", "1", "1", "1"]
     subprocess.run(command, check=True)
     st.success("Text2Mesh complete")
 '''
