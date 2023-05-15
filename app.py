@@ -10,6 +10,10 @@ import PIL
 from base64 import b64encode
 from IPython.display import display, HTML
 from tqdm.auto import tqdm
+import subprocess
+
+# Install dependencies from requirements.txt
+subprocess.call(['pip', 'install', '-r', 'setup.py'])
 
 
 st.title("Text to 3D Model with Text2Mesh")
