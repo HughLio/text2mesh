@@ -48,10 +48,13 @@ def run_branched(args):
     # Check that isn't already done
     if (not args.overwrite) and os.path.exists(os.path.join(args.output_dir, "loss.png")) and \
             os.path.exists(os.path.join(args.output_dir, f"{objbase}_final.obj")):
+        out_obj=f"{objbase}_final.obj"
         print(f"Already done with {args.output_dir}")
         exit()
     elif args.overwrite and os.path.exists(os.path.join(args.output_dir, "loss.png")) and \
             os.path.exists(os.path.join(args.output_dir, f"{objbase}_final.obj")):
+        out_obj=f"{objbase}_final.obj"
+            
         import shutil
         for filename in os.listdir(args.output_dir):
             file_path = os.path.join(args.output_dir, filename)
@@ -411,6 +414,8 @@ def save_rendered_results(args, dir, final_color, mesh):
     img = torch.cat((img, alpha.unsqueeze(0)), dim=0)
     img = transforms.ToPILImage()(img)
     img.save(os.path.join(dir, f"final_cluster.png"))
+    final_img=f"final_cluster.png"
+    return final_img
 
 
 def update_mesh(mlp, network_input, prior_color, sampled_mesh, vertices):
