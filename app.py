@@ -17,10 +17,13 @@ st.title("Text to 3D Model with Text2Mesh")
 # Streamlit interface to upload and remesh mesh
 st.header("Upload and Remesh Mesh")
 obj_file = st.file_uploader("Upload OBJ file", type=["obj"])
-#if obj_file is not None:
-obj_path = "input_obj/input.obj"
-with open(obj_path, "wb") as f:
-    f.write(obj_file.getbuffer())
+if obj_file is not None:
+        # Save the uploaded file
+        file_path = os.path.join("input_obj", obj_file.name)
+        with open(file_path, "wb") as f:
+            f.write(obj_file.getvalue())
+        
+        st.success("File saved successfully!")
 prompt = st.text_input("Enter prompt")
 n_iter = st.number_input("Enter number of iterations", min_value=1, value=750, step=1)
 remeshed_path = obj_path
