@@ -18,14 +18,14 @@ if st.button("Run Text2Mesh"):
         output_dir = temp_dir
         n_iter = 750
         st.write("Running Text2Mesh...")
-        python main.py --run branch --obj_path {obj_file.name} --output_dir {output_dir} --prompt \"{prompt}\" --sigma 12.0 --clamp tanh --n_normaugs 4 --n_augs 1 --normmincrop 0.1 --normmaxcrop 0.4 --geoloss --colordepth 2 --normdepth 2 --frontview --frontview_std 4 --clipavg view --lr_decay 0.9 --clamp tanh --normclamp tanh --maxcrop 1.0 --save_render --seed 29 --n_iter {n_iter} --learning_rate 0.0005 --normal_learning_rate 0.0005 --standardize --no_pe --symmetry --background 1 1 1
-       # subprocess.run(command, shell=True)
-        # Run the command and capture the output and error streams
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
-
-        # Print the output and error streams
-        print("Output:", result.stdout)
-        print("Error:", result.stderr)
+        !python main.py --run branch \
+                --obj_path {obj_file} \
+                --output_dir {output_dir} \
+                --prompt "{prompt}" \
+                --sigma 12.0  --clamp tanh --n_normaugs 4 --n_augs 1 --normmincrop 0.1 --normmaxcrop 0.4 \
+                --geoloss --colordepth 2 --normdepth 2 --frontview --frontview_std 4 --clipavg view \
+                --lr_decay 0.9 --clamp tanh --normclamp tanh  --maxcrop 1.0 --save_render --seed 29 \
+                --n_iter {n_iter}  --learning_rate 0.0005 --normal_learning_rate 0.0005 --standardize --no_pe --symmetry --background 1 1 1
         st.success("Text2Mesh complete")
 
         # Display the resulting images
