@@ -1,7 +1,7 @@
 import streamlit as st
 import trimesh
 import argparse
-import cv2
+#import cv2
 import os
 import matplotlib.pyplot as plt
 import importlib
@@ -33,7 +33,7 @@ if os.path.isfile(remeshed_path):
     st.write("Running Text2Mesh...")
     os.system(f"python main.py --run branch --obj_path {remeshed_path} --output_dir {output_dir} --prompt \"{prompt}\" --sigma 12.0 --clamp tanh --n_normaugs 4 --n_augs 1 --normmincrop 0.1 --normmaxcrop 0.4 --geoloss --colordepth 2 --normdepth 2 --frontview --frontview_std 4 --clipavg view --lr_decay 0.9 --clamp tanh --normclamp tanh --maxcrop 1.0 --save_render --seed 29 --n_iter {n_iter} --learning_rate 0.0005 --normal_learning_rate 0.0005 --standardize --no_pe --symmetry --background 1 1 1")
     st.success("Text2Mesh complete")
-
+'''
 # Streamlit interface to display results
 st.header("Display Results")
 if os.path.isdir(output_dir):
@@ -47,4 +47,4 @@ if os.path.isdir(output_dir):
         plt.title(f"Iteration {i}")
         st.pyplot()
 else:
-    st.warning("No output directory found.")
+    st.warning("No output directory found.")'''
