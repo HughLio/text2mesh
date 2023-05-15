@@ -8,6 +8,19 @@ import importlib
 import PIL
 from IPython.display import display, HTML
 import subprocess
+from git import Repo
+
+# Function to initialize a Git repository
+def init_git_repository(folder_path):
+    repo = Repo.init(folder_path)
+    return repo
+
+# Function to commit and push changes to the remote repository
+def commit_and_push(repo, commit_message):
+    repo.index.add("*")
+    repo.index.commit(commit_message)
+    origin = repo.remote(name="origin")
+    origin.push()
 
 
 st.title("Text to 3D Model with Text2Mesh")
@@ -20,11 +33,17 @@ st.header("Upload and Remesh Mesh")
 obj_file = st.file_uploader("Upload OBJ file", type=["obj"])
 if obj_file is not None:
         # Save the uploaded file
-        file_path = os.path.join("./input_obj/", obj_file.name)
+        file_path = os.path.join("input_obj", obj_file.name)
         with open(file_path, "wb") as f:
             f.write(obj_file.getvalue())
         
         st.success("File saved successfully!")
+        # Initialize Git repository
+        repo = init_git_repository("input_obj")
+
+        # Commit and push changes
+        commit_message = "Uploaded file"
+        commit_and_push(repo, commit_message)
 prompt = st.text_input("Enter prompt")
 #n_iter = st.number_input("Enter number of iterations", min_value=1, value=750, step=1)
 #remeshed_path = obj_path
