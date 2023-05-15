@@ -7,4 +7,4 @@ torch
 torchtext
 torchvision 
 cython
-python setup.py install
+setup.py 
