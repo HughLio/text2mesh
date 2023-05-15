@@ -6,5 +6,5 @@ usd-core
 torch
 torchtext
 torchvision 
-cython 
-setup.py
+cython
+python setup.py install
