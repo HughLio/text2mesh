@@ -9,6 +9,20 @@ import PIL
 from IPython.display import display, HTML
 import subprocess
 from git import Repo
+import git
+
+# Define the repository path
+repo_path = "/input_obj/"
+
+# Initialize the Git repository object
+repo = git.Repo(repo_path)
+
+# Add the remote "origin" with the remote URL
+remote_url = "https://github.com/vishnu6363/text2mesh.git"
+origin_remote = repo.create_remote("origin", url=remote_url)
+
+# Verify that the remote was added successfully
+print(repo.remotes)
 
 # Function to initialize a Git repository
 def init_git_repository(folder_path):
