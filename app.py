@@ -18,7 +18,7 @@ if st.button("Run Text2Mesh"):
         output_dir = temp_dir
         n_iter = 750
         st.write("Running Text2Mesh...")
-        command = f"python main.py --run branch --obj_path {obj_file.name} --output_dir {output_dir} --prompt \"{prompt}\" --sigma 12.0 --clamp tanh --n_normaugs 4 --n_augs 1 --normmincrop 0.1 --normmaxcrop 0.4 --geoloss --colordepth 2 --normdepth 2 --frontview --frontview_std 4 --clipavg view --lr_decay 0.9 --clamp tanh --normclamp tanh --maxcrop 1.0 --save_render --seed 29 --n_iter {n_iter} --learning_rate 0.0005 --normal_learning_rate 0.0005 --standardize --no_pe --symmetry --background 1 1 1"
+        command = f"python /path/to/main.py --run branch --obj_path {obj_file.name} --output_dir {output_dir} --prompt \"{prompt}\" --sigma 12.0 --clamp tanh --n_normaugs 4 --n_augs 1 --normmincrop 0.1 --normmaxcrop 0.4 --geoloss --colordepth 2 --normdepth 2 --frontview --frontview_std 4 --clipavg view --lr_decay 0.9 --clamp tanh --normclamp tanh --maxcrop 1.0 --save_render --seed 29 --n_iter {n_iter} --learning_rate 0.0005 --normal_learning_rate 0.0005 --standardize --no_pe --symmetry --background 1 1 1"
         subprocess.run(command, shell=True)
         st.success("Text2Mesh complete")
 
@@ -26,5 +26,5 @@ if st.button("Run Text2Mesh"):
         for i in range(0, n_iter, 100):
             img_path = os.path.join(output_dir, f"iter_{i}.jpg")
             if os.path.isfile(img_path):
-                st.image(img_path, caption=f"Iteration {i}")
-        st.success("Text2Mesh complete")       
+                img = cv2.imread(img_path)
+                st.image(img, caption=f"Iteration {i}")
