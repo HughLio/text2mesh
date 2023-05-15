@@ -6,5 +6,6 @@ usd-core
 torch
 torchtext
 torchvision 
+pymeshlab
 cython
 
