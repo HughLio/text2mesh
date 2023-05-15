@@ -1,15 +1,12 @@
 import streamlit as st
 import trimesh
-import pymeshlab
 import argparse
 import cv2
 import os
 import matplotlib.pyplot as plt
 import importlib
 import PIL
-from base64 import b64encode
 from IPython.display import display, HTML
-from tqdm.auto import tqdm
 import subprocess
 
 # Install dependencies from requirements.txt
